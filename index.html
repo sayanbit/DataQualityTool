@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+ <meta charset="utf-8">
+ <title>Sayan Data Query</title>
+ <meta name="description" content="">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+input[type=text],{
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 23%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #FEFCFC;
+  padding: 20px;
+}
+  p.sansserif {
+  font-family: Arial, Helvetica, sans-serif;
+}
+  #showMe {
+  animation: cssAnimation 0s 4s forwards;
+  visibility: hidden;
+}
+
+@keyframes cssAnimation {
+  to   { visibility: visible; }
+}
+  body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("https://freedesignfile.com/upload/2017/01/Light-blue-tech-background-vector-04.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+  .bottomright {
+  position: absolute;
+  bottom: 2px;
+  right: 20px;
+  font-size: 45px;
+}
+
+ .dot {
+  height: 12px;
+  width: 12px;
+  background-color: #0EE043;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+</style>
+</head>
+<body>
+  <div class="bg">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <table style="width: 100%; height: 54px;">
+<tbody>
+<tr>
+  <td style="width: 100%;align:center"><strong><font face="verdana" color="black" size=5><em>DATA QUALITY TOOL</em></font></strong></td>
+</tr>
+</tbody>
+</table>
+<hr style="height:4px;border:none;color:#333;background-color:#333;" /><br><br>
+    <p class="bottomright"><b>Deloitte</b><span class="dot"></span></p>
+  <div id="message" style="display:none;">Loading DEs from your BU, wait for few secs...</div>
+  <div id='showMe'>Now Ready !</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script>
+        //When the page has loaded.
+        $( document ).ready(function(){
+            $('#message').fadeIn('slow', function(){
+               $('#message').delay(2000).fadeOut(); 
+            });
+        });
+        </script>
+  <form action="https://pub.s7.exacttarget.com/u0r2wuttr3f" method="GET">
+    <p class="sansserif"><font size="3">Choose DE from the dropdown and click Proceed</font></p><br>
+ <select class='corpusname' id="selectNumber" name="selectNumber" required onchange="selectedDE()">
+    <option value="" name="selectNumber">SELECT DE</option>
+    </select><br><p class="sansserif">Your Selected DE Key: &nbsp;&nbsp;</p>
+<input type="text" name="dename" id="dekey12" value="Selected Key" size="40" disabled/>
+<br><br>
+    <input type="submit" id="seedoc" value="Proceed"/>
+  </form>
+  </div>
+  <script>
+    function selectedDE() {
+  var e = document.getElementById("selectNumber");
+  var strUser = e.options[e.selectedIndex].text;
+  var strUser1 = e.options[e.selectedIndex].value;
+      
+       var de_name = document.getElementById("dename12");
+       var de_key = document.getElementById("dekey12");
+      de_key.value = strUser1;
+      var selectelem = document.getElementById('selectNumber');
+    var btnelem = document.getElementById('seedoc');
+    btnelem.disabled = !selectelem.value;       
+    }
+    </script>
+  <script>
+    var payload = '';
+payload += '<?xml version="1.0" encoding="utf-8"?>'
+payload += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
+payload += '<soapenv:Header>'
+payload += '<wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">'
+payload += '<wsse:UsernameToken wsu:Id="UsernameToken-32259181" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'
+payload += '<wsse:Username>saybit1@deloitte.com</wsse:Username>'
+payload += '<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">avaya@4321</wsse:Password>'
+payload += '</wsse:UsernameToken>'
+payload += '</wsse:Security>'
+payload += '</soapenv:Header>'
+payload += '<soapenv:Body>'
+payload += '<RetrieveRequestMsg xmlns="http://exacttarget.com/wsdl/partnerAPI">'
+payload += '<RetrieveRequest>'
+payload += '<ObjectType>DataExtension</ObjectType>'
+payload += '<Properties>CustomerKey</Properties>'
+payload += '<Properties>Name</Properties>'
+payload += '<Properties>CategoryID</Properties>'
+payload += '</RetrieveRequest>'
+payload += '</RetrieveRequestMsg>'
+payload += '</soapenv:Body>'
+payload += '</soapenv:Envelope>'
+console.log(payload);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('POST', 'https://webservice.s7.exacttarget.com/Service.asmx', true);
+    xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+      xmlhttp.setRequestHeader('SOAPAction', 'Retrieve');
+      xmlhttp.send(payload);
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myFunction(this);
+    }
+  };
+
+function myFunction(xml) {
+  var x,y, i,j, xmlDoc, txt;
+  xmlDoc = xml.responseXML;
+  txt = "";
+  var select = document.getElementById("selectNumber");
+  var select1 = document.getElementById("selectNumber1");
+  x = xmlDoc.getElementsByTagName("Name");
+  y = xmlDoc.getElementsByTagName("CustomerKey");
+  for (i = 0; i< x.length; i++) {
+    var opt1 = y[i].childNodes[0].nodeValue;
+    var opt = x[i].childNodes[0].nodeValue;
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.setAttribute("value", opt1);
+ el.setAttribute("name", opt);
+    select.appendChild(el);
+}
+}
+    </script>
+</body>
+</html>
